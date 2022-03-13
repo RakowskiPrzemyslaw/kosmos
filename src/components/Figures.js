@@ -29,7 +29,7 @@ function Figure({ item }) {
   )
 }
 
-export default function () {
+export default function Figures() {
   const items = [
     { component: <icosahedronGeometry />, position: [5, 2, 15] },
     { component: <octahedronGeometry />, position: [-3, 2, -40] },

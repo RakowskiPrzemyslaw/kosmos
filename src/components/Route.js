@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import * as Curves from 'three/examples/jsm/curves/CurveExtras.js'
+// import * as Curves from 'three/examples/jsm/curves/CurveExtras.js'
 import * as THREE from 'three'
 import { Tube, useScroll } from '@react-three/drei'
 

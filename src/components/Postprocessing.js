@@ -1,7 +1,7 @@
 import { EffectComposer, Bloom, Scanline } from '@react-three/postprocessing'
 import { Suspense } from 'react'
 
-export default function () {
+export default function Postprocessing() {
   return (
     <Suspense fallback={null}>
       <EffectComposer smaa>

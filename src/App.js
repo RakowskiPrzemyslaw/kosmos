@@ -11,10 +11,12 @@ import Sun from './components/Sun'
 import Stars from './components/Stars'
 import Figures from './components/Figures'
 
+const debug = false
+
 function App() {
   return (
     <Canvas>
-      {/* <OrbitControls /> */}
+      {debug && <OrbitControls />}
       <Postprocessing />
       <Stars />
       <Sky
@@ -39,9 +41,7 @@ function App() {
         horizontal={false}
         infinite={true}
       >
-        <Scroll>
-          <Route />
-        </Scroll>
+        <Scroll>{!debug && <Route />}</Scroll>
       </ScrollControls>
       <ambientLight color="#1338be" />
       <pointLight color="#d90077" position={[10, 10, 10]} />

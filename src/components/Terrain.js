@@ -1,7 +1,7 @@
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
-export default function () {
+export default function Terrain() {
   const terrainTexture = useTexture({
     map: 'grid2.jpg',
     displacementMap: 'hmap3.jpeg',
