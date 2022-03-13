@@ -1,6 +1,6 @@
 import { Stars } from '@react-three/drei'
 
-export default function () {
+export default function Stars() {
   return (
     <Stars
       radius={400}
