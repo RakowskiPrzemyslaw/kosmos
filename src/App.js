@@ -1,78 +1,51 @@
 import './App.css'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import React, { useRef, Suspense } from 'react'
-import * as Curves from 'three/examples/jsm/curves/CurveExtras.js'
-import * as THREE from 'three'
-import {
-  Stars,
-  Tube,
-  ScrollControls,
-  Scroll,
-  useScroll,
-} from '@react-three/drei'
+import { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { ScrollControls, Scroll, Sky } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 
-function Knot() {
-  const tube = useRef()
-  const { camera, clock } = useThree()
-  const data = useScroll()
-
-  const updateCamera = () => {
-    // const time = clock.getElapsedTime()
-    const time = data.scroll.current * 300
-    const looptime = 20
-    const t = (time % looptime) / looptime
-    const t2 = ((time + 0.1) % looptime) / looptime
-
-    const pos = tube.current.geometry.parameters.path.getPointAt(t)
-    const pos2 = tube.current.geometry.parameters.path.getPointAt(t2)
-    camera.position.copy(pos)
-    camera.lookAt(pos2)
-  }
-
-  // const curve = new Curves.KnotCurve()
-  const curve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0, 0, 0),
-    new THREE.Vector3(0, 0, 100),
-    new THREE.Vector3(50, 0, 100),
-  ])
-
-  useFrame(() => {
-    updateCamera()
-  })
-
-  return (
-    <Tube ref={tube} args={[curve, 440, 3, 1, false]}>
-      <meshBasicMaterial wireframe />
-    </Tube>
-  )
-}
+import Route from './components/Route'
+import Terrain from './components/Terrain'
+import Postprocessing from './components/Postprocessing'
+import Sun from './components/Sun'
+import Stars from './components/Stars'
+import Figures from './components/Figures'
 
 function App() {
   return (
     <Canvas>
-      <Stars
-        radius={100}
-        depth={50}
-        count={5000}
-        factor={4}
-        saturation={0}
-        fade
+      {/* <OrbitControls /> */}
+      <Postprocessing />
+      <Stars />
+      <Sky
+        turbidity={10}
+        mieCoefficient={0.01}
+        mieDirectionalG={0.9}
+        rayleigh={10}
+        distance={450000}
+        inclination={0.01}
+        azimuth={0.25}
       />
 
+      <Figures />
+      <Suspense fallback={null}>
+        <Terrain />
+        <Sun />
+      </Suspense>
       <ScrollControls
         pages={1}
         distance={100}
         damping={4}
         horizontal={false}
-        infinite={false}
+        infinite={true}
       >
         <Scroll>
-          <Knot />
+          <Route />
         </Scroll>
       </ScrollControls>
-
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <ambientLight color="#1338be" />
+      <pointLight color="#d90077" position={[10, 10, 10]} />
+      <pointLight color="#d90077" position={[10, 10, -200]} />
     </Canvas>
   )
 }
