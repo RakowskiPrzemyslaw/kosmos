@@ -7,7 +7,7 @@ function Figure({ item }) {
   const [active, setActive] = useState(false)
   const { scale } = useSpring({ scale: active ? 1.5 : 1 })
 
-  const handleItemClick = (event) => {
+  const handleItemClick = () => {
     setActive((prevState) => !prevState)
   }
 
