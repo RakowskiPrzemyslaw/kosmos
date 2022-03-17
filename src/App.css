@@ -3,3 +3,50 @@ html, body, #root {
   width: 100%;
   background: black;
 }
+
+.loader-bg {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  z-index: 100;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-bg h1 {
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+  letter-spacing: 20px;
+  text-transform: uppercase;
+  padding-left: 20px;
+}
+
+.progress {
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 5px;
+  width: 200px;
+}
+
+.progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #fff;
+  height: 4px;
+  width: 0;
+}
+
+@keyframes load {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
