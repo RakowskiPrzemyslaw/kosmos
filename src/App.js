@@ -15,15 +15,9 @@ import Figures from './components/Figures'
 const debug = false
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000);
-  }, [])
-
   return (
     <>
-      {isLoading && <Loader />}
+      <Loader />
       <Canvas>
         {debug && <OrbitControls />}
         <Postprocessing />
@@ -55,6 +49,8 @@ function App() {
         <ambientLight color="#1338be" />
         <pointLight color="#d90077" position={[10, 10, 10]} />
         <pointLight color="#d90077" position={[10, 10, -200]} />
+        <pointLight color="#ff0000" position={[10, 10, -100]} />
+        <pointLight color="#0000ff" position={[10, 10, -800]} />
       </Canvas>
     </>
   )

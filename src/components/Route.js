@@ -14,16 +14,16 @@ export default function Route() {
     const time = data.scroll.current * 60 + clock.getElapsedTime() / 5
     const looptime = 40
     const t = (time % looptime) / looptime
-    const t2 = ((time + 0.1) % looptime) / looptime
+    // const t2 = ((time + 0.1) % looptime) / looptime
 
-    const pos = tube.current.geometry.parameters.path.getPointAt(t)
-    const pos2 = tube.current.geometry.parameters.path.getPointAt(t2)
-    camera.position.copy(pos)
-    light.current.position.copy(pos)
-    camera.lookAt(pos2)
+    const currentPosition = tube.current.geometry.parameters.path.getPointAt(t)
+    // const lookAtPosition = tube.current.geometry.parameters.path.getPointAt(t2)
+    camera.position.copy(currentPosition)
+    light.current.position.copy(currentPosition)
+    // camera.lookAt(pos2)
+    camera.lookAt(0, 0, -500)
   }
 
-  // const curve = new Curves.KnotCurve()
   const curve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(0, 2, 45),
     new THREE.Vector3(3, 2, 15),
@@ -50,7 +50,7 @@ export default function Route() {
       <Tube ref={tube} args={[curve, 440, 3, 1, false]}>
         <meshBasicMaterial visible={false} />
       </Tube>
-      <pointLight ref={light} color="#ffd319" />
+      <pointLight ref={light} intensity={3} color="#ffd319" />
     </>
   )
 }
